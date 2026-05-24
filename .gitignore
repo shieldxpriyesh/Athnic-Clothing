@@ -67,3 +67,9 @@ frontend/out/
 *.njsproj
 *.sln
 *.swp
+
+# Agent / Planning files
+walkthrough.md
+implementation_plan.md
+task.md
+
