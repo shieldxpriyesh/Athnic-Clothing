@@ -4,8 +4,8 @@
   "description": "Athnic Clothing E-commerce Platform",
   "scripts": {
     "frontend": "npm run dev --prefix frontend",
-    "backend": "cd backend && python3 manage.py runserver",
-    "install:all": "npm install --prefix frontend && pip install -r backend/requirements.txt",
+    "backend": "cd backend && ./venv/bin/python3 manage.py runserver",
+    "install:all": "npm install --prefix frontend && ./backend/venv/bin/pip install -r backend/requirements.txt",
     "dev": "echo 'Run \"npm run frontend\" and \"npm run backend\" in separate terminals for now.'"
   },
   "keywords": [

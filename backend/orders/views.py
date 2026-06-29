@@ -23,6 +23,8 @@ except Exception:
 
 class CartView(APIView):
     """GET /api/cart/ — Get session cart"""
+    authentication_classes = []
+
     def get(self, request):
         cart = request.session.get('cart', {})
         cart_items = []
@@ -89,6 +91,8 @@ class CartView(APIView):
 
 class CartAddView(APIView):
     """POST /api/cart/ — Add to cart"""
+    authentication_classes = []
+
     def post(self, request):
         product_id = request.data.get('product_id')
         size = request.data.get('size', '')
@@ -133,6 +137,8 @@ class CartAddView(APIView):
 
 class CartUpdateView(APIView):
     """PUT /api/cart/<key>/ — Update cart item quantity"""
+    authentication_classes = []
+
     def put(self, request, key):
         cart = request.session.get('cart', {})
         quantity = int(request.data.get('quantity', 1))
@@ -160,6 +166,8 @@ class CartUpdateView(APIView):
 
 class CartClearView(APIView):
     """DELETE /api/cart/clear/ — Clear cart"""
+    authentication_classes = []
+
     def delete(self, request):
         request.session['cart'] = {}
         request.session.modified = True
@@ -170,6 +178,8 @@ class CartClearView(APIView):
 
 class ApplyCouponView(APIView):
     """POST /api/cart/apply-coupon/ — Apply coupon code"""
+    authentication_classes = []
+
     def post(self, request):
         code = request.data.get('code', '').strip().upper()
         from django.utils import timezone
@@ -213,6 +223,7 @@ class ApplyCouponView(APIView):
             'discount_amount': str(discount),
             'message': f'Coupon applied! You save ₹{discount}',
         })
+
 
 
 # ─── Orders ──────────────────────────────────────────────────────────────────

@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third-party
+    'cloudinary_storage',
+    'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
@@ -117,14 +119,20 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# WhiteNoise storage for compressed static files
+# WhiteNoise storage for compressed static files & Cloudinary for Media
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if not DEBUG else "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'dlth9asfk'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '425167846975676'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'tBnkPdzdJhmUKuISgqo1BMEc0YE')
 }
 
 # ─── CORS ─────────────────────────────────────────────────────────────────────
